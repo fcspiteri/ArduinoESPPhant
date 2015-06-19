@@ -54,7 +54,14 @@ void loop(){
 	// Send data
 	ser.println("conn:send(\"" + getStr + "\")");
 	Serial.println("conn:send(\"" + getStr + "\")");
-	delay(5000);
+
+	// Read resposne from ESP and print to serial monitor
+	if (ser.available()){	// Check if ESP is trying to talk
+		while(ser.available()){
+			char c = ser.read();
+			Serial.write(c);
+		}
+	}
          
 	// Delay between updates
 	delay(30000);
