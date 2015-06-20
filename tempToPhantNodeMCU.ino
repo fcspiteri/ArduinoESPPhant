@@ -9,8 +9,8 @@ int softTX = 5;	// TX pin for software serial
 int softRX = 6;	// RX pin for software serial
 
 // Phant server info
-String phantPubKey = "YOURPHANTPUBLICKEY";
-String phantPrivKey = "YOURPHANTPRIVATEKEY";
+String phantPubKey = "EJEaAXMEVGT5QAjO8gj0";
+String phantPrivKey = "dqM6ma5MKWCy9BAX6EAk";
 String phantField = "temp";
 String serverIP = "54.86.132.254"; // data.sparkfun.com IP address
 String serverPort = "80";
@@ -55,16 +55,8 @@ void loop(){
 	ser.println("conn:send(\"" + getStr + "\")");
 	Serial.println("conn:send(\"" + getStr + "\")");
 
-	// Read resposne from ESP and print to serial monitor
-	if (ser.available()){	// Check if ESP is trying to talk
-		while(ser.available()){
-			char c = ser.read();
-			Serial.write(c);
-		}
-	}
-         
 	// Delay between updates
-	delay(30000);
+	delay(15000);
 }
 
 String measureTempF(){
@@ -77,7 +69,7 @@ String measureTempF(){
 	val /= 10.0;
 
 	// Convert 10-bit temp reading to degrees
-	float tempC = (((val*3.3/1024.0)-0.33) * 100);
+	float tempC = (((val*5.0/1024.0)-0.5) * 100);
 	float tempF = tempC*9.0/5.0 + 32;
 
 	// Convert values to strings
