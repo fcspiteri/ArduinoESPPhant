@@ -9,9 +9,9 @@ int softTX = 5;	// TX pin for software serial
 int softRX = 6;	// RX pin for software serial
 
 // Phant server info
-String phantPubKey = "EJEaAXMEVGT5QAjO8gj0";
-String phantPrivKey = "dqM6ma5MKWCy9BAX6EAk";
-String phantField = "temp";
+String phantPubKey = "YOURPHANTPUBLICKEY";
+String phantPrivKey = "YOURPHANTPRIVATEKEY";
+String phantField = "YOURPHANTFIELD";
 String serverIP = "54.86.132.254"; // data.sparkfun.com IP address
 String serverPort = "80";
 
