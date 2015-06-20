@@ -9,8 +9,8 @@ int softTX = 5;	// TX pin for software serial
 int softRX = 6;	// RX pin for software serial
 
 // Phant server info
-String phantPubKey = "YOURPHANTPUBLICKEY";
-String phantPrivKey = "YOURPHANTPRIVATEKEY";
+String phantPubKey = "YOURPUBLICPHANTKEY";
+String phantPrivKey = "YOURPRIVATEPHANTKEY";
 String phantField = "YOURPHANTFIELD";
 String serverIP = "54.86.132.254"; // data.sparkfun.com IP address
 String serverPort = "80";
@@ -27,6 +27,8 @@ void setup(){
 
 	// Initialize software serial
 	ser.begin(9600);
+        delay(15000);
+        restartNode();
 }
 
 
@@ -55,8 +57,13 @@ void loop(){
 	ser.println("conn:send(\"" + getStr + "\")");
 	Serial.println("conn:send(\"" + getStr + "\")");
 
+        // Close connection
+        delay(5000);
+        ser.println("conn:close()");
+        Serial.println("conn:close()");
+
 	// Delay between updates
-	delay(15000);
+	delay(44000);
 }
 
 String measureTempF(){
@@ -78,4 +85,10 @@ String measureTempF(){
 	String strTempF = dtostrf(tempF, 4, 1, buf);
 
 	return strTempF;
+}
+
+void restartNode(){
+  ser.println("node.restart()");
+  Serial.println("node.restart()");
+  delay(15000);
 }
